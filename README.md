@@ -1,4 +1,4 @@
-# COMP1531 18s2 Group Project
+# COMP1531 18s2 Group Project (full mark)
 
 The Medisoft web application is an online appointment management system. Users can login using an email and password, and manage their healthcare appointments with patients, providers and centres affiliated with Medisoft.
 
