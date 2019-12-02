@@ -10,10 +10,10 @@ Group Members:
 
 | Name | zID  | Contribution To Milestone 2 |
 | :-----: | :--: | :--------------------------: |
-| Frank Tran | z5116060 | 23% |
-| Michelle Seeto | z5061204 | 31% |
-| Muhammad Al Waliy ismail | z5177103 | 23% | 
-| Ximing Fan | z5092028 | 23% |
+| Frank Tran | z5116060 | 25% |
+| Michelle Seeto | z5061204 | 25% |
+| Muhammad Al Waliy ismail | z5177103 | 25% | 
+| Ximing Fan | z5092028 | 25% |
 
 # How to use?
 
