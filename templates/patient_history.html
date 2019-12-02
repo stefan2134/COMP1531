@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% if patient is not defined %}
+        <h2>Patient history</h2>
+        <br>
+        {% if patient_list|length == 0 %}
+            You have no patients.
+            <br>
+        {% else %}
+            Select a patient:
+            <form method='post' action='/patient_history'>
+                <select name="patient" onchange="this.form.submit();">
+                    <option value=""></option>
+                    {% for patient in patient_list %}
+                        <option value="{{patient.email_address}}">{{patient.full_name}}</option>
+                    {% endfor %}
+                </select>
+            </form>
+        {% endif %}
+    {% else %}
+        <h2>{{patient.full_name}}</h2>
+        <br>
+        <table class = "table table-bordered">
+            <tr>
+                <td>Name</td>
+                <td>{{patient.full_name}}</td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>{{patient.email_address}}</td>
+            </tr>
+            <tr>
+                <td>Phone number</td>
+                <td>{{patient.phone_number}}</td>
+            </tr>
+            <tr>
+                <td>Medicare number</td>
+                <td>{{patient.medicare_number}}</td>
+            </tr>
+        </table>
+
+        <h3>Current Appointents</h3>
+        <br>
+        {% if current_appointments|length == 0 %}
+            No appointments recorded.
+        {% else %}
+            <table class="table table-striped">
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Centre</th>
+                    <th>Provider</th>
+                    <th>Service</th>
+                    <th>Patient Notes</th>
+                    <th></th>
+                </tr>
+                {% for result in current_appointments %}
+                    <tr>
+                        <td>{{result.datetime.strftime("%A, %d %B %Y")}}</td>
+                        <td>{{result.datetime.strftime("%I:%M %p")}}</td>
+                        <td>{{result.healthcare_centre.name}}</td>
+                        <td>{{result.provider.full_name}}</td>
+                        <td>{{result.provider.service}}</td>
+                        <td>{{result.patient_note}}</td>
+                        {% if current_user == result.provider %}
+                        <form method="post" action="/consultation">
+                            <input type="hidden" name="form" value="start">
+                            <input type="hidden" name="provider" value="{{result.provider.email_address}}">
+                            <input type="hidden" name="datetime" value="{{result.datetime.strftime("%d-%m-%Y %H:%M")}}">
+                            <td><button type="submit">Start consultation</button></td>
+                        </form>
+                        {% else %}
+                            <td></td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+
+        <br>
+        <h3>Past Appointents</h3>
+        <br>
+        {% if past_appointments|length == 0 %}
+            No appointments recorded.
+        {% else %}
+            <table class="table table-striped">
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Centre</th>
+                    <th>Provider</th>
+                    <th>Service</th>
+                    <th>Patient Notes</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                {% for result in past_appointments %}
+                    <tr>
+                        <td>{{result.datetime.strftime("%A, %d %B %Y")}}</td>
+                        <td>{{result.datetime.strftime("%I:%M %p")}}</td>
+                        <td>{{result.healthcare_centre.name}}</td>
+                        <td>{{result.provider.full_name}}</td>
+                        <td>{{result.provider.service}}</td>
+                        <td>{{result.patient_note}}</td>
+                        <form method="post" action="/appointment_details">
+                            <input type="hidden" name="provider" value="{{result.provider.email_address}}">
+                            <input type="hidden" name="datetime" value="{{result.datetime.strftime("%d-%m-%Y %H:%M")}}">
+                            <td><button type="submit">View details</button></td>
+                        </form>
+                        {% if current_user == result.provider %}
+                        <form method="post" action="/consultation">
+                            <input type="hidden" name="form" value="edit">
+                            <input type="hidden" name="provider" value="{{result.provider.email_address}}">
+                            <input type="hidden" name="datetime" value="{{result.datetime.strftime("%d-%m-%Y %H:%M")}}">
+                            <td><button type="submit">Edit details</button></td>
+                        </form>
+                        {% else %}
+                            <td></td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+    {% endif %}
+{% endblock %}

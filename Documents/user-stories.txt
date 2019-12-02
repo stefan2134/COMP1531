@@ -1,0 +1,85 @@
+EPIC: As an user, I want to login and update my profile
+
+  FEATURE: login
+  US-1: As an unauthorised user, I want to login successfully with a correct username and password so that I can access my account securely
+    > A user is able to enter an email and password in order to be authorised
+    > If the email/password combination is incorrect, a message is displayed on the webpage: “Incorrect email or password.”
+    > The user gains access to the site upon successful authorisation
+
+  US-2: As an unauthorised user, I want to be able to reset my password so that I can regain access to my account
+    > A user is able to enter an email to identify the account whose password is to be reset
+    > If the email is not registered to an account, a message is displayed on the webpage: “Account does not exist.”
+    > An email is sent to the user containing instructions to reset the password
+
+  US-3: As Medisoft, I want to block users that login incorrectly three times in a row so that I can protect my site from unauthorised access
+    > If three attempts have been made to access an account, the account is blocked until its password is reset
+    > If an account is blocked, a message is displayed on the webpage: “Account has been blocked. Please check your email to reset your password.”
+    > An email is sent to the user containing instructions to reset the password
+
+  FEATURE: update profile
+  US-4: As a authorised user, I want to change my personal details so that my profile is up to date
+    > A user is able to enter one or many new details to be updated
+    > After a user submits new details, two options are displayed on the webpage: “Confirm changes” / “Cancel changes”
+    > If new details are successfully registered, old details are overridden and a message is displayed on the webpage: “Profile page successfully updated.”
+
+EPIC: As a patient, I want to search for a service, view the profile of a service, rate a service, book a medical appointment and view my appointment history
+  FEATURE: search for a healthcare service
+  US-5: As a patient, I want to search for a healthcare centre by name or suburb so that I can find a suitable centre
+    > A user can select to search for a healthcare centre by name or by suburb
+    > A user can search for healthcare centres by suburb or by name, by specifying part of the suburb/name in a search field.
+    > If the search does not produce any results, a message will be displayed on the webpage: “No matches found”
+    > If the search is successful, a list of healthcare centres corresponding to the search field is displayed. For each healthcare centre, the name, location and rating are displayed.
+    > A user can click on any healthcare centre to be redirected to its profile page
+  
+  US-6: As a patient, I want to search for a healthcare provider by name or service so that I can find the specific help I need
+    > A user can select to search for a healthcare provider by name or by service 
+    > If searching by service, a user can search for a list of all healthcare providers that offer a given service.
+    > If searching by name, a user can search for healthcare providers by name or by specifying part of the name in a search field.
+    > If the search does not produce any results, a message will be displayed on the webpage: “No matches found”
+    > If the search is successful, a list of healthcare providers corresponding to the search field is displayed. For each healthcare provider, the name, service, centre, working hours and rating are displayed.
+    > A user can click on any healthcare provider to be redirected to their profile page
+
+  FEATURE: view profile of a healthcare service
+  US-7: As a patient, I want to view the profile of a healthcare centre so that I can get more information about it
+    > The healthcare centre’s name, location and customer ratings are be displayed
+    > A list of all healthcare providers working at the centre and their working hours, categorised by service, is also displayed
+    > A user can click on any healthcare provider to be redirected to their profile page
+
+  US-8: As a patient, I want to view the profile of a healthcare provider so that I can get more information about them
+    > The healthcare provider’s name, service and customer ratings should be displayed.
+    > A list of all healthcare centres at which the provider works and their corresponding working hours is also displayed.
+    > A user can click on any healthcare centre to be redirected to its profile page.
+    > A user can click a button to book an appointment with the provider
+
+  FEATURE: book an appointment
+  US-9: As a patient, I want to book an appointment so that I can see a provider about a health problem
+    > A patient selects one thirty-minute timeslot for which the specified provider is available
+    > A patient can optionally include a brief reason for their visit  
+    > If the booking is successful, a message is displayed on the webpage: “Booking successful”
+    > An email is sent to the user containing details of the appointment
+
+  FEATURE: rate a healthcare service
+  US-10: As a patient, I want to rate a healthcare service so that I can express my satisfaction or dissatisfaction
+    > A patient can select a rating from 1, 2, 3, 4 and 5, with one being the least satisfied and 5 being the most satisfied, for the centre and provider of their most recent appointment
+    > If the patient has previously rated the centre or provider, the old rating is overridden by the most recent rating
+
+  FEATURE: view appointment history
+  US-11: As a patient, I want to view my appointment history so that I can trace my medical history
+    > A patient is able view a list of all their previous and current appointments
+    > If a patient has not attended any appointments, a message is displayed on the website: “No appointments recorded.”
+    > If the patient has appointments, a list of all appointments made by that patient is displayed. For each appointment, the date, time, provider, service, centre and rating (if given) are also displayed
+    > A patient can click on an appointment to be redirected to the centre or provider’s profile page
+
+EPIC: As a healthcare provider, I want to view my appointment history, view my patient’s appointment history and document my consultations
+  US-12: As a healthcare provider, I want to view my appointment history so that I can keep track of my work commitments
+    > A provider is able to view a list of all their previous and current appointments
+    > If a provider has not attended any appointments, a message is displayed on the website: “No appointments recorded.”
+    > If the provider has appointments, a list of all appointments seen by that provider is displayed. For each appointment, the date, time, patient, centre, rating (if given) and consultation notes (if given) are also displayed.
+    > A provider can click on an appointment to be redirected to the patient’s appointment history
+
+  US-13: As a healthcare provider I want to view my patient’s appointment history so that I am informed of their medical history
+    > A provider is able to view a list all past and current appointments made by that patient with any providers. For each appointment, the date, time, provider, centre and consultation notes (if given) are also displayed.
+  
+  US-14: As a healthcare provider, I want to record details about my patient during consultation so that I can document their medical condition
+    > A provider is able to write notes about a patient’s visit in a text field and save it with the appointment details
+    > A provider is able to write a list of medications prescribed during a visit in a text field and save it with the appointment details

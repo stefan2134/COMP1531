@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Referrals</h2>
+    <br>
+    {% if referrals|length == 0 %}
+        No referrals.
+    {% else %}
+        <table class="table table-striped">
+            <tr>
+                {% if current_user.is_specialist() %}
+                    <th>Patient</th>
+                {% else %}
+                    <th>Doctor</th>
+                    <th>Specialisation</th>
+                {% endif %}
+                <th>Date of referral</th>
+                <th>Message</th>
+                <th></th>
+            </tr>
+            {% for referral in referrals %}
+                <tr>
+                    {% if current_user.is_specialist() %}
+                        <td>{{referral.patient.full_name}}</td>
+                    {% else %}
+                        <td>{{referral.specialist.full_name}}</td>
+                        <td>{{referral.specialist.expertise}}</td>
+                    {% endif %}
+                    <td>{{referral.date.strftime("%A, %d %B %Y")}}</td>
+                    <td>{{referral.message}}</td>
+                    {% if referral.appointment != None %}
+                        <td>Appointment booked for {{referral.appointment.datetime.strftime("%d-%m-%Y %I:%M %p")}}</td>
+                    {% else %}
+                        {% if current_user.is_specialist() %}
+                            <td>No appointment booked.</td>
+                        {% else %}
+                            <td>
+                                <form method="post" action="/booking">
+                                    <input type="hidden" name="form" value="book">
+                                    <input type="hidden" name="email" value="{{referral.specialist.email_address}}">
+                                    <input type="hidden" name="referral" value="{{referral.id}}">
+                                    <button type="submit">Book an appointment</button>
+                                </form>
+                            </td>
+                        {% endif %}
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+{% endblock %}

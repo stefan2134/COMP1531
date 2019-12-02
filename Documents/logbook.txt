@@ -1,0 +1,712 @@
+---------------------------------------------------------------------------------------------------------------------------------------
+DATE OF MEETING: Monday 20/08/2018 11am-12pm
+LOCATION: Main Library Room 414
+ATTENDEES: Stefan Fan, Michelle Seeto, Frank Tran, Muhammad Al Waliy
+
+-- Summary of decisions made in stand-up meetings, requirements elicited and key design decisions --
+We will each make our own epic and user stories before coming together to combine them by Wednesday 12pm.
+Next meeting: Wednesday 22/08/2018 12pm after COMP1531 lecture at Law Library Room G10
+	
+EXAMPLES OF EPIC & USER STORIES
+Epic: As a patient, I want to search for a health care services so that I can book an appointment
+    User story: As a patient, I want to search for a health care centre by suburb so I can book appointments near me
+        Confirmations:
+            A user can search for a health centre by suburb based on an inputted suburb name 
+            All health care centres located in the inputted suburb are displayed.
+            Brief details and the links are provided about the centre in the search results
+    User story: as a patient, I want to search for a health care centre by name so I can find a specific centre
+	
+Epic: as a patient, I want to look at a health care service's profile
+
+-- Responsibilities allocated to each team member and tasks to be accomplished for the next meeting --
+We will each make our own epic and user stories for the entire program, including acceptance criteria
+We will set up our git branches
+---------------------------------------------------------------------------------------------------------------------------------------
+DATE OF MEETING: Wednesday 22/08/2018 12pm-1pm
+LOCATION: Law Library Room G10
+ATTENDEES: Stefan Fan, Michelle Seeto, Frank Tran, Muhammad Al Waliy
+
+-- Summary of decisions made in stand-up meetings, requirements elicited and key design decisions --
+Branches should not be named after people, must change it so that each branch is for a feature.
+Everyone's user stories were analysed and the follow epic stories were agreed upon:
+	Searching for health services
+	Booking an appointment
+Viewing profiles as an epic story is in dispute. To be decided during the next lab, on Friday 24th August
+We will need to finalise the user stories and accompaning requirements next meeting
+Next meeting: Thursday 23/08/2018 10am at Main Library Room 401
+
+FINALISED USER STORIES:
+EPIC: As a patient, I want to search for a healthcare service so that I can book an appointment
+    FEATURE: search for a healthcare centre
+        As a patient, I want to search for a healthcare centre by name so that I can be treated at my preferred centre
+        As a patient, I want to search for a healthcare centre by suburb so that I can be treated at a centre near me
+    FEATURE: search for a healthcare provider
+        As a patient, I want to search for a healthcare provider by name so that I can be treated by my preferred provider
+        As a patient, I want to search for a healthcare provider by service so that I can find the specific help I need
+
+-- Responsibilities allocated to each team member and tasks to be accomplished for the next meeting --
+Each of us will make a list of requirements necessary in the design.
+
+-- Reflection on assigned tasks --
+Stefan and Michelle did not brainstorm acceptance criteria as they felt it was more important to decide on the user stories first.
+---------------------------------------------------------------------------------------------------------------------------------------
+DATE OF MEETING: Thursday 23/08/2018 10am-11am
+LOCATION: Main Library Room 401
+ATTENDEES: Stefan Fan, Michelle Seeto, Frank Tran, Muhammad Al Waliy
+
+-- Summary of decisions made in stand-up meetings, requirements elicited and key design decisions --
+Timeline for Milestone 1 was decided:
+    - Finalise first draft of user stories by the end of today
+    - Present user stories to tutors during Lab tomorrow and receive feedback
+    - Complete user stories by Thursday Week 6, including:
+        - Acceptance criteria
+        - RGB description
+        - User story points
+        - Priority of implementation
+    - Complete UML class by Thursday Week 6
+    - Present all deliverables to tutors during Lab on Friday Week 6
+    - Make any necessary changes after receiving feedback from tutors by Saturday night Week 6
+    - Submit all deliverables for Milestone 1 by Saturday night Week 6
+    
+Login system was designed:
+    - Users login with an email and password
+    - Each user gets three login attempts
+    - If a user exceeds their login attempts, they are blocked from the system
+    - A user may reset their password if they fail a login attempt
+    - A user must reset their password if they are blocked in order to regain access to the system
+
+User stories were further developed and first draft completed.
+
+THEMES:
+Search for a service, Book appointment, View profile, Update profile, View appointment history, Rate service, Login, Document consultation
+
+SEARCH FOR A SERVICE
+No changes made
+
+BOOK APPOINTMENT
+EPIC: As a patient, I want to book an appointment so that I can see a provider about a health problem
+    As a patient, I want to select a time slot for an appointment so I can choose an ideal time for me
+    As a patient, I want to write comments so that my provider is informed of my situation prior to the appointment
+
+LOGIN
+EPIC: As a user, I want to login with a username and password so that I can access my account securely
+    As a user, I want to login successfully with a correct username and password so that I can access my account securely
+    As a user, I want to be able to reset my password when my login fails so that I am not blocked from accessing the site
+    As Medisoft, I want to block users that login incorrectly three times in a row so that I can protect my site from unauthorised access
+    As a user, I want to be able to reset my password if I have been blocked so that I can regain access to the site
+
+RATE SERVICE
+As a patient, I want to rate a healthcare service so that I can express my satisfaction/dissatisfaction
+
+UPDATE PROFILE
+As a user, I want to change my personal details so that my profile page is up to date with my current situation
+
+VIEW APPOINTMENT HISTORY
+EPIC: As a user, I want to view my appointment history so that I can keep track of my medical appointments
+    As a patient, I want to view my own appointment history so that I can keep track of my medical history
+	As a healthcare provider, I want to view my own appointment history so that I can keep track of my work commitments
+
+EPIC: As a healthcare provider, I want to view my patient’s appointment history so that I can be informed of their medical history
+
+VIEW PROFILE
+EPIC: As a user, I want to view the profile of a healthcare service so that I can get more information about it
+    FEATURE: view profile of a healthcare centre
+        As a user, I want to view the services of a healthcare centre so that I know whether they are of interest to me
+        As a user, I want to view the location of a healthcare centre so that I know whether it is convenient and accessible for me
+        As a user, I want to view the customer ratings of a healthcare centre so that I can learn from others’ experiences
+        As a patient, I want to view the providers working at a healthcare centre so that I know who I could make an appointment with
+    FEATURE: view profile of a healthcare provider
+        As a patient, I want to view a healthcare provider’s profession so that I know whether they provide the help I need
+        As a patient, I want to view the centres at which a healthcare provider works so that I know where I could make an appointment
+        As a user, I want to view the healthcare provider’s working hours so that I am informed of their availabilities
+        As a patient, I want to view the customer ratings of a healthcare provider so that I can learn from others’ experiences
+
+DOCUMENT CONSULTATION
+EPIC: As a healthcare provider, I want to record details about my patient during consultation so that I can document their condition over time
+    As a healthcare provider, I want to record general notes during a consultation so that I can document their condition over time
+    As a healthcare provider, I want to record any medication prescribed during a consultation so that a patient’s medical history is documented
+
+Next meeting: Monday 27/08/2018 11am-12pm at Main Library Room 418
+
+-- Responsibilities allocated to each team member and tasks to be accomplished for the next meeting --
+Each of us will brainstorm acceptance criteria for each user story, to be discussed and compiled during the next meeting.
+
+-- Milestones achieved --
+First draft of user stories complete.
+---------------------------------------------------------------------------------------------------------------------------------------
+DATE OF MEETING: Monday 27/08/2018 11am-12pm
+LOCATION: Main Library Room 414
+ATTENDEES: Stefan Fan, Michelle Seeto, Frank Tran, Muhammad Al Waliy
+
+
+-- Summary of decisions made in stand-up meetings, requirements elicited and key design decisions --
+Write out some acceptance criteria
+Only the user stories are due for Friday 31/08/2018, so changes in our design timeline will be adjusted
+
+	
+-- Changes to the user stories
+Gave an identifier to each user story
+Created features to sort out the user stories under the epic stories
+Added additional acceptance criteria to the some user stories
+Removed acceptance criteria which described implementation - acceptance criteria should outline the rules and results of the user story to be fulfilled
+
+
+-- Responsibilities allocated to each team member and tasks to be accomplished for the next meeting --
+Add more acceptance criteria for the next meeting, Wednesday 12pm after COMP1531 lecture at Law Library Room 112
+
+---------------------------------------------------------------------------------------------------------------------------------------
+DATE OF MEETING: 29/08/2018
+LOCATION: Law Library ROOM 112
+ATTENDEES: Stefan Fan, Michelle Seeto, Frank Tran, Muhammad Al Waliy
+
+
+-- Summary of decisions made in stand-up meetings, requirements elicited and key design decisions --
+Finished acceptance criteria
+And if possible, priority of implementation and points
+
+-- Changes to the user stories
+Finialised/edited user stories
+Included further, explicit details regarding the various system outputs based on different inputs
+
+
+
+-- Responsibilities allocated to each team member and tasks to be accomplished for the next meeting --
+Write the estimate and priority for each user story in the google doc. 1 story point = half a day. Meeting tomorrow at 10.
+
+---------------------------------------------------------------------------------------------------------------------------------------
+DATE OF MEETING: 30/08/2018
+LOCATION: Main Library ROOM 413
+ATTENDEES: Stefan Fan, Michelle Seeto, Frank Tran, Muhammad Al Waliy
+
+
+-- Summary of decisions made in stand-up meetings, requirements elicited and key design decisions --
+Finalise the story points
+Decided 1 story point is half a day
+Make sure log book is structured well and detailed
+Next meeting will be planning, deciding how we will design the system, partition the work.
+Next meeting will be on Monday, 3rd of September, Main Library Room 415, 11am
+
+-- Changes to the user stories
+Added an extra case to login, when a user updates their profile
+For the user story 'rating a service' or 'provider', we will have separate options on the profile page to rate them
+
+-- Responsibilities allocated to each team member and tasks to be accomplished for the next meeting --
+Frank: Make a readme.md file
+Waliy/ Stefan: At lab, prepare to present to user stories
+Michelle: Put user stories and acceptance criteria in deliverable document
+---------------------------------------------------------------------------------------------------------------------------------------
+DATE OF MEETING: Monday 03/09/2018 11am-1pm
+LOCATION: Main Library Room 415
+ATTENDEES: Stefan Fan, Michelle Seeto, Frank Tran, Muhammad Al Waliy
+
+-- Milestones Achieved --
+User stories finalised, including story points
+
+-- Summary of decisions made during meeting --
+Refer to shopping system example for clarifications
+The rating that users make are associated with a patient and a provider, instead of being related to a specific appointment
+We will have a separate list for patients and providers instead of a general 'users' class
+Use draw.io linked with github for velocity chart
+To ascertain availability of appointment times, iterate through list of appointments to check if the time is free 
+
+-- Tasks accomplished during meeting --
+Handwritten class diagram completed
+
+-- Obstacles Encountered --   (clarification in a lab 12-2 session same day by tutors)
+Q: Does the health care centre have its own working hours? 
+A: They have the same working hours
+Q: Where are the provider working hours?
+A: they have the same hours as the centre, just that they cant have an appointment at the same time
+Q: Do centres have their own ID? 
+A: Yes, known as their abn
+Q: Why do the providers have 'cs1531' as their ID? 
+A: It is a BUG
+Q: Does it bring any value to have a list of users in general, or can we have a list of providers and a list of patient?
+A: It is in our discretion
+Q: Are ratings specific to appointments or are they an overall rating between a patient to a service? 
+A: We can rate ANYONE, ANYTIME, even if no appointment with them, at least for the first iteration
+Q: Is the relationship between provider and employment a composition or aggregation?
+A: Aggregation (usually the case when a user is involved). Also, we usually 'pass' details in about a user
+
+-- Next meeting's agenda --
+Decide which user stories will need to be fulfilled in the next iteration
+Partition user stories to be responsible to each member
+Make a UML Class Diagram and see how our system will function
+Next meeting location: 05/09/2018 Main Library Lvl 2 220b, 12pm
+
+-- Responsibilities allocated to each team member and tasks to be accomplished for the next meeting --
+Michelle: Make handwritten UML class diagram into a deliverable document using draw.io 
+All members: Fill out Doodle to determine appropriate times for meetings (when people are free)
+
+---------------------------------------------------------------------------------------------------------------------------------------
+DATE OF MEETING: 05/09/2018 Main Library Lvl 2 220b, 12pm - 1pm
+LOCATION: Main Library Lvl 2 220
+ATTENDEES: Stefan Fan, Michelle Seeto, Frank Tran, Muhammad Al Waliy
+
+-- Reflection on assigned tasks --
+The class diagram need to have appropritate managers, i.e. user manager
+Reduce the amount of crossing
+Try to keep the higher level classes above to keep it flow
+All links are good, just aesthetics need to be improved
+
+-- Summary of decisions made during meeting --
+Allow a preregistered user to log into the system - US1
+Enable a patient to do search, book appointment with health care provider and view current appointments: US6-US10
+Book appointment: US13-US15 
+View Appointments (as a patient): US17 
+View profiles of health care providers and services: US11, US12
+View own appointments (as a provider): US18
+Need to edit user stories for rating and current/past appointments
+Split appointments into "current" and "past" lists; all appointments go to current list, then it goes to past once done
+
+-- Tasks accomplished during meeting --
+Reviewed class diagram
+Selected appropriate user stories for next iteration
+Decided the structure of Appointments
+Adjust user stories such as ratings and appointments
+
+-- Obstacles Encountered -- 
+Not sure how to implement appointment
+Need to fix user stories to match the iteration requirements
+How to decribe the date and tie class in UML diagram (already existing package?)
+
+-- Next meeting's agenda --
+Change the user stories for rating and viewing current/past appointments
+Partition user stories to be responsible to each member
+
+-- Responsibilities allocated to each team member and tasks to be accomplished for the next meeting --
+Fill out the Doodle to find when you are free!
+
+---------------------------------------------------------------------------------------------------------------------------------------
+DATE OF MEETING: 05/09/2018 10am - 11am
+LOCATION: Main Library Room 413
+ATTENDEES: Stefan Fan, Michelle Seeto, Frank Tran, Muhammad Al Waliy
+
+-- Reflection on assigned tasks --
+Noodle results show no other availabilities - keep meetings times the same as previous.
+
+-- Summary of decisions made during meeting --
+Make the logbook in reverse and shorten the length
+26 total story points for this iteration --> Each member does ~6.5 story points
+Work on the main classes and dashboard first, then it will be easier to work on separate user stories
+
+Classes to implement before Friday lab:
+Waliy: User, Patient, HealthcareProvider, HealthcareService, HealthcareCentre
+Michelle: HamsSystem & class Managers
+Frank: Appointment
+Stefan: Employment, Rating
+
+User stories "blocks" (one per person):
+1) Login/view profile
+- US-1 Login = 2 SP
+- US-11 View profile of healthcare centre = 1 SP
+- US-12 View profile of healthcare provider = 1 SP
+
+2) Search healthcare service
+- US-6 Select search filter for healthcare centre = 1 SP
+- US-7 Search for healthcare centre = 3 SP
+- US-8 Select search filter for healthcare provider = 1 SP
+- US-9 Select medical service for healthcare provider = 1 SP
+- US-10 Search for a healthcare provider = 3 SP
+
+3) Book appointment
+- US-13 Select time for upcoming appointment = 2 SP
+- US-14 Enter details about upcoming appointment = 1 SP
+- US-15 Book appointment = 4 SP
+
+4) View appointment history
+- US-17 View own appointment history (patient) = 3 SP
+- US-18 View own appointment history (provider) = 3 SP
+
+-- Tasks accomplished during meeting --
+Coded collaboratively the User class and started the Patient class
+
+-- Next meeting's agenda --
+Each person chooses a "block" of user stories to complete --> Finalise the partition of user stories
+Next meeting: Friday 07/08/2018 lab 5pm
+
+-- Responsibilities allocated to each team member and tasks to be accomplished for the next meeting --
+Frank - reverse the logbook entries, make the width smaller
+Everyone - code your given classes
+
+---------------------------------------------------------------------------------------------------------------------------------------
+DATE OF MEETING: 07/09/2018 5-5:45pm
+LOCATION: Strings Lab
+ATTENDEES: Stefan Fan, Michelle Seeto, Frank Tran, Muhammad Al Waliy
+
+-- Reflection on assigned tasks --
+Logbook reformatting - not that important, can be done later
+Everyone coded their given classes, but still need to merge together
+
+-- Summary of decisions made during meeting --
+Need to redo Github branches to correspond to features, not people
+User stories "blocks":
+1) Login/view profile - Waliy
+2) Search healthcare centre - Michelle
+3) Book appointment - Frank
+4) View appointment history - Stefan
+
+-- Next meeting's agenda --
+Finalise code for classes
+Bring together individual work so far
+Next meeting: Monday 10/08/2018 11am-12pm Main Library Room 414
+
+-- Responsibilities allocated to each team member and tasks to be accomplished for the next meeting --
+Frank - set up base code for website and organise documents
+Everyone - delete old Github branches & make new ones corresponding to features e.g. "search"
+Everyone - start building user stories, have a functioning page displaying some information by next meeting
+
+---------------------------------------------------------------------------------------------------------------------------------------
+DATE OF MEETING: 10/09/2018 11am-12pm
+LOCATION: Main Library Room 414
+ATTENDEES: Stefan Fan, Michelle Seeto, Frank Tran, Muhammad Al Waliy
+
+-- Reflection on assigned tasks --
+Login looks usable, need to make the user manager to sort through
+Difficulties with Github
+
+-- Summary of decisions made during meeting --
+We will get the velocity chart organised
+Have a little coding session to see how everyone is doing
+Everyone knows how to use github properly, using the merging
+Added story point for yesterday - login story point complete
+We can use the sample answer given as an example
+Finalised individual branches
+Next meeting on Wednesday 12pm, Main Library Media Room 328 
+
+-- Next meeting's agenda --
+Check on progress
+
+-- Responsibilities allocated to each team member and tasks to be accomplished for the next meeting --
+Work on the user stories on the website
+Michelle - debug classes to ensure they integrate properly
+
+---------------------------------------------------------------------------------------------------------------------------------------
+DATE OF MEETING: 12/09/2018 12-1pm
+LOCATION: Main Library Media Booth 328
+ATTENDEES: Stefan Fan, Michelle Seeto, Frank Tran, Muhammad Al Waliy
+
+-- Reflection on assigned tasks --
+Michelle - tested and debugged Python classes; all should be functioning correctly
+Waliy - finished login user stories
+Michelle - Search user stories was quicker to implement than anticipated
+Frank - implemented time buttons, still need to link with provider, patient, centre and instantiate an Appointment class
+Stefan - implemented structure of page/format, need to link with data
+
+-- Summary of decisions made during meeting --
+How to access data?
+User the system object instantiated in server.py, from which you can access all the class managers (user_manager, appointment_manager etc.)
+
+Tasks still to complete:
+- Change Provider "service" attribute to enum
+- Create a requirements.txt file for all python modules
+- Implement extraction of data from csv files
+- Change search so that it is not case sensitive
+- Clean up code to ensure consistency
+
+Try to finish bulk of the work before Friday lab.
+Next meeting: Friday 14/09/2018 during Lab
+
+-- Next meeting's agenda --
+Check on progress
+
+-- Responsibilities allocated to each team member and tasks to be accomplished for the next meeting --
+- Frank: try to finish appointment user story before Friday lab, or do as much as possible
+- Stefan: try to finish view appointment history stories before Friday lab, or do as much as possible
+- Waliy: try to finish view profile user stories before Friday lab, or do as much as possible
+- Michelle: change Provider "service" attribute to enum, change search so that it is not case sensitive, implement extraction of data from csv file
+
+-- Milestones achieved --
+- Finished Login user story (US-1)
+- Finished Search user stories (US-6, US-7, US-8, US-9, US-10)
+
+-- Obstacles --
+- Frank and Stefan were unsure of how to access data, should be cleared up now through discussion in the meeting
+
+---------------------------------------------------------------------------------------------------------------------------------------
+DATE OF MEETING: 19/09/2018 12-1pm
+LOCATION: Law Library G07
+ATTENDEES: Stefan Fan, Michelle Seeto, Frank Tran, Muhammad Al Waliy
+
+-- Reflection on assigned tasks --
+- Most group members were busy over the weekend from other assignments so Michelle helped a lot to finish the other branches
+
+-- Summary of decisions made during meeting --
+- Need to make a database, so we can load everything and all appointments will still be there
+- Go to all functions to make sure all design principles are matched, such as SRP and DIP, otherwise refactor them
+- Structure the code well
+- Go through all lectures
+- for booking, we can have no confirm page, and also have a 'double check' submit button
+- FINISH EVERYTHING ONE WEEK EARLY, OCTOBER 8TH
+
+-- List of user stories that need to be done
+	Waliy:
+	- US4: change personal details
+	- US5: reviewing changes
+
+	Michelle:
+	- US14: Patient can enter details about appointment
+	- US21: Record details about consultation
+	
+	Stefan:
+	- US20: View appointment profile, like showing the patient note, provider medication
+	
+	Frank:
+	- US16: Ratings
+	
+	These can be done AFTER refactoring 
+
+-- Next meeting's agenda --
+To bring together all refactored an error handled code to ensure consistency (before changing in master)
+
+-- Responsibilities allocated to each team member and tasks to be accomplished for the next meeting --
+- Refactor our own code (next meeting on 26th September, place TBA)
+- (Read up on the lectures)
+
+-- Milestones achieved --
+Milestone 1 - User stories, Milestone 2 - Booking and search complete
+
+---------------------------------------------------------------------------------------------------------------------------------------
+DATE OF MEETING: 26/09/2018 10-"something"am
+LOCATION: UpperRoom Cafe
+ATTENDEES: Stefan Fan, Michelle Seeto, Frank Tran, Muhammad Al Waliy
+
+-- Reflection on assigned tasks --
+Stefan And Waliy unclear about refactoring, error handling
+Frank done
+
+-- Summary of decisions made during meeting --
+Helped Waliy understand error handling and how to refactor it
+Helped Stefan understand github and how to refactor
+Made next responsibilties for each team mate
+PDF for how to use github is in Documents in github
+Finish everything on SUnday 30th September
+
+-- Next meeting's agenda --
+Next meeting at 3pm on next Monday 1st Oct (via facebook)
+
+-- Responsibilities allocated to each team member and tasks to be accomplished for the next meeting --
+Make an error.py and do the below
+Finish everything on SUnday 30th September
+
+Waliy:
+Create login error class
+Write verify_user function in user class
+Implement error handling in get_user class (under system)
+e.g. user doesnt exist, wrong password
+
+Frank:
+Create a booking error class
+For normal errors that can occur, e.g. provider not working at centre, time is outside working hours, chosen time provider not available, put in a curr date
+
+Michelle:
+Rename the rating.py to rating (from value)
+If you can improve the filtering in system.py according to OCP
+Implement error handling for search
+
+Stefan:
+Get familiar with github
+Refactor view appointment history
+Fix true/false in history.html for is_provider
+
+---------------------------------------------------------------------------------------------------------------------------------------
+DATE OF MEETING: 12/09/2018 12-1pm
+LOCATION: Main Library Media Booth 328
+ATTENDEES: Stefan Fan, Michelle Seeto, Frank Tran, Muhammad Al Waliy
+
+-- Reflection on assigned tasks --
+Michelle - tested and debugged Python classes; all should be functioning correctly
+Waliy - finished login user stories
+Michelle - Search user stories was quicker to implement than anticipated
+Frank - implemented time buttons, still need to link with provider, patient, centre and instantiate an Appointment class
+Stefan - implemented structure of page/format, need to link with data
+
+-- Summary of decisions made during meeting --
+How to access data?
+User the system object instantiated in server.py, from which you can access all the class managers (user_manager, appointment_manager etc.)
+
+Tasks still to complete:
+- Change Provider "service" attribute to enum
+- Create a requirements.txt file for all python modules
+- Implement extraction of data from csv files
+- Change search so that it is not case sensitive
+- Clean up code to ensure consistency
+
+Try to finish bulk of the work before Friday lab.
+Next meeting: Friday 14/09/2018 during Lab
+
+-- Next meeting's agenda --
+Check on progress
+
+-- Responsibilities allocated to each team member and tasks to be accomplished for the next meeting --
+- Frank: try to finish appointment user story before Friday lab, or do as much as possible
+- Stefan: try to finish view appointment history stories before Friday lab, or do as much as possible
+- Waliy: try to finish view profile user stories before Friday lab, or do as much as possible
+- Michelle: change Provider "service" attribute to enum, change search so that it is not case sensitive, implement extraction of data from csv file
+
+-- Milestones achieved --
+- Finished Login user story (US-1)
+- Finished Search user stories (US-6, US-7, US-8, US-9, US-10)
+
+-- Obstacles --
+- Frank and Stefan were unsure of how to access data, should be cleared up now through discussion in the meeting
+
+---------------------------------------------------------------------------------------------------------------------------------------
+DATE OF MEETING: 01/10/2018 3-4pm
+LOCATION: Online, Messenger group voice call
+ATTENDEES: Stefan Fan, Michelle Seeto, Frank Tran, Muhammad Al Waliy
+
+-- Reflection on assigned tasks --
+- Waliy done
+- Michelle done
+- Frank done, but issue with checking errors not in the system class
+- Stefan: a few mistakes in refactoring, okay with github now 
+
+-- Summary of decisions made during meeting --
+- We want to move our errors to system class errors.
+
+-- Next meeting's agenda --
+- Discuss progress in making new features
+- Meeting next Wednesday at 12, lastet 1pm, Main Library, Media Booth 326
+
+-- Responsibilities allocated to each team member and tasks to be accomplished for the next meeting --
+- Michelle will draw up a draft restructure about the error checking class on a system level
+- Everyone: Add the errors to the error checking class
+- Michelle, Waliy, Frank: Start new features, see previous logbook entry (19/09)
+- Stefan: Make functions to refactor the view patient history
+
+-- Obstacles --
+Is it a violation of cohesion to move functions into system class? 
+
+---------------------------------------------------------------------------------------------------------------------------------------
+DATE OF MEETING: 03/10/2018 1-2pm
+LOCATION: Main Library Media Room 326
+ATTENDEES: Stefan Fan, Michelle Seeto, Frank Tran, Muhammad Al Waliy
+
+-- Reflection on assigned tasks --
+- Stefan finished refactoring patient history
+- Refactoring all done
+
+-- Summary of decisions made during meeting --
+- Ratings discusses, remove rating manager and just include a rating list for each provider, healthcare centre
+- Calculate average rating simply using a function
+- Milestone 3 read:
+	- Update user stories
+	- Update UML diagram
+	- Do pytest
+	- Update velocity chart
+	- Only see patients who have an appointment with you
+	- only edit the history of your own appointments (not other providers)
+- Finish ALL CODING for milestone 3 by 8TH OCTOBER
+
+-- List of user stories that need to be done
+	Waliy:
+	- US4: change personal details
+	- US5: reviewing changes
+	- Implement error handling class
+
+	Michelle:
+	- US14: Patient can enter details about appointment
+	- US21: Record details about consultation
+	- implement specialist class
+	- Include the referral to specialists
+	
+	Stefan:
+	- US20: View appointment profile, like showing the patient note, provider medication
+	- Convert patient history into patient profile
+	- Make the view patients list show only patients a provider has an appointment with
+	
+	Frank:
+	- US16: Ratings
+	- Make a confirm button for bookings
+	- Add more error handling for booking
+
+-- Next meeting's agenda --
+Summary of the classes
+Update user stories or UML diagram
+
+- Next meeting Thursday Main Library 218
+
+-- Responsibilities allocated to each team member and tasks to be accomplished for the next meeting --
+- EVERYONE: Update/add your user stories, under your responsibility by Friday
+
+
+---------------------------------------------------------------------------------------------------------------------------------------
+DATE OF MEETING: 04/10/2018 10-11am
+LOCATION: Main Library Room 218
+ATTENDEES: Stefan Fan, Michelle Seeto, Frank Tran, Muhammad Al Waliy
+
+-- Reflection on assigned tasks --
+- N/A
+
+-- Summary of decisions made during meeting --
+- We need to include saving data and loading it
+- Error checker class will be made (by Waliy and michelle)
+- Frank will try and do the saving data
+- Need to add error class to uml diagram
+- Fix indentation in rating.py
+- remove rating manager from system.py
+- condense get_appointments functions (remove get_history from patient class)
+- remove add and remove in all managers (except add_appointments) in system.py
+- implement specialist class (include in enumerations, user.py)
+- on user objects, just call the is_provider function
+- move is_available function from user.py to appointment manager
+- fix the is_available calculation
+
+-- Next meeting's agenda --
+- Discuss new user stories
+- Next meeting in the lab tomorrow
+
+-- Responsibilities allocated to each team member and tasks to be accomplished for the next meeting --
+- Finish user stories by tomorrow's lab
+
+-- Obstacles --
+Unsure of how to specify datetime class in UML
+Unsure of where to put the days in month calculation
+How do we specify multiple return values and dictionary returns in UML
+Where to put the add_appointment, in system or in appointment manager??
+how tofix the is_available function calculation 
+
+---------------------------------------------------------------------------------------------------------------------------------------
+DATE OF MEETING: 05/10/2018 18:50-pm
+LOCATION: Strings Lab
+ATTENDEES: Stefan Fan, Michelle Seeto, Frank Tran, Muhammad Al Waliy
+
+-- Reflection on assigned tasks --
+Only Michelle did some more work on her parts, added consultation notes and medication 
+
+-- Summary of decisions made during meeting --
+- Add user stories to google doc, including the extra acceptance criteria
+- Need to add more buttons to the booking process to shorten it up
+
+
+-- Next meeting's agenda --
+Review code and final user stories
+Next meeting Monday 11am, location LAW G10
+
+-- Responsibilities allocated to each team member and tasks to be accomplished for the next meeting --
+Finish all the coding
+
+---------------------------------------------------------------------------------------------------------------------------------------
+DATE OF MEETING: 10/10/2018 12:00 - 1:00pm
+LOCATION: LAW LIBRARY G12
+ATTENDEES: Stefan Fan, Michelle Seeto, Frank Tran, Muhammad Al Waliy
+
+-- Reflection on assigned tasks --
+Frank: Try and except for booking appointment need to be put in routes
+Use Michelle's as reference, raise one error at a time
+
+-- Summary of decisions made during meeting --
+- Fix up the error handling and have it consistent
+- Still need to do the data storage
+
+-- Next meeting's agenda --
+Tomorrow 10am, Main Library 414
+
+-- Responsibilities allocated to each team member and tasks to be accomplished for the next meeting --
+Frank: Move error handling
+Stefan: Have an edit button only for appointments of that provider
+Michelle: fix up the specialist referral
+Waliy: TBC
+---------------------------------------------------------------------------------------------------------------------------------------
+

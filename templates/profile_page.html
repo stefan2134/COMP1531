@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div>
+        {% if update %}
+        <h2>Update Profile Page</h2>
+        (Leave any fields blank that you don't wish to change)
+        <form method="POST" action = "/update_profile">
+        <table class = "table table-bordered">
+            <tr>
+                <td>Name</td>
+                <td><input type="text" class="form-control-file" placeholder="Enter new name" name="name" ></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="text" class="form-control-file" value={{current_user.email_address}} placeholder={{current_user.email_address}} readonly></td>
+            </tr>
+            <tr>
+                <td>Phone number</td>
+                <td><input type="text" class="form-control-file" placeholder="Enter new phone number" name="phone_number"></td>
+            </tr>
+            {% if current_user.is_provider() %}
+            <tr>
+
+                <td>Service:</td>
+                <td><input type="text" class="form-control-file" value={{current_user.service}} placeholder="{{current_user.service}}" readonly></td>               
+
+            </tr>
+            {% if current_user.is_specialist() %}
+            <tr>
+                <td>Specialisation</td>
+                <td><input type="text" class="form-control-file" value={{current_user.expertise}} placeholder="{{current_user.expertise}}" readonly></td>
+            <tr>
+            {% endif %}
+
+                <td>Provider Number</td>
+                <td><input type="text" class="form-control-file" value={{current_user.provider_number}} placeholder={{current_user.provider_number}} readonly></td>
+            </tr>
+            {% else %}
+            <tr>
+                <td>Medicare Number</td>
+                <td><input type="text" class="form-control-file" value={{current_user.medicare_number}} placeholder="{{current_user.medicare_number}}" readonly></td>                       
+
+            </tr>
+            {% endif %}
+            
+        </table>
+      <div>
+      <button name="confirm" type="submit">Submit changes</button>
+      <button type="reset">Reset</button>
+      <button onclick="window.history.back()">Cancel</button>
+      </div>
+
+    </form>
+
+        {% else %}
+      <h2>Your Profile</h2>
+        <table class = "table table-bordered">
+            <tr>
+                <td>Name</td>
+                <td>{{current_user.full_name}}</td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>{{current_user.email_address}}</td>
+            </tr>
+            <tr>
+                <td>Phone number</td>
+                <td>{{current_user.phone_number}}</td>
+            </tr>
+            {% if current_user.is_provider() %}
+            <tr>
+                <td>Service</td>
+                <td>{{current_user.service}}</td>               
+            </tr>
+            {% if current_user.is_specialist() %}
+            <tr>
+                <td>Specialisation</td>
+                <td>{{current_user.expertise}}</td>
+            </tr>
+            {% endif %}
+            <tr>
+                <td>Provider number</td>
+                <td>{{current_user.provider_number}}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td>Medicare number</td>
+                <td>{{current_user.medicare_number}}</td>               
+            </tr>
+            {% endif %}
+            
+        </table>
+    </div>
+    <form method="POST" action = "/profile_page">
+      <div>
+
+      <button name="Update" type="submit">Update Profile</button>
+      </div>
+
+    </form>
+
+
+       {% endif %}
+    
+    
+{% endblock %}

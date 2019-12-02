@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Search for a healthcare centre or provider</h2>
+    <br>
+
+    <b>Search for healthcare centre</b>
+    <br>
+
+    <form method="post" action="/search">
+        <input type="hidden" name="form" value="filter">
+        <input type="hidden" name="service" value="centre">
+        <input type="radio" name="filter" value="name" onclick="this.form.submit();"
+            {% if service == 'centre' and filter == 'name' %} checked=True {% endif %}> Search for a centre by name
+        <br>
+        <input type="radio" name="filter" value="suburb" onclick="this.form.submit();"
+            {% if service == 'centre' and filter == 'suburb' %} checked=True {% endif %}> Search for a centre by suburb
+        <br>
+    </form>
+
+    {% if service == 'centre' %}
+        <form method="post" action="/search">
+            <input type="hidden" name="service" value="centre">
+            <input type="hidden" name="form" value="input">
+            {% if filter == 'name' %} <input type="hidden" name="filter" value="name">
+            {% else %} <input type="hidden" name="filter" value="suburb">
+            {% endif %}
+            <input type="text" name="input" placeholder="Leave empty if you want to search all" size="50">
+            <button type="submit">Search</button>
+        </form>
+    {% endif %}
+
+    <br>
+    <b>Search for healthcare provider</b>
+    <br>
+
+    <form method="post" action="/search">
+        <input type="hidden" name="form" value="filter">
+        <input type="hidden" name="service" value="provider">
+        <input type="radio" name="filter" value="name" onclick="this.form.submit();"
+            {% if service == 'provider' and filter == 'name' %} checked=True {% endif %}> Search for a provider by name
+        <br>
+        <input type="radio" name="filter" value="service" onclick="this.form.submit();"
+            {% if service == 'provider' and filter == 'service' %} checked=True {% endif %}> Search for a provider by service
+        <br>
+    </form>
+
+    {% if service == 'provider' and filter == 'name' %}
+        <form method="post" action="/search">
+            <input type="hidden" name="service" value="provider">
+            <input type="hidden" name="form" value="input">
+            <input type="hidden" name="filter" value="name">
+            <input type="text" name="input" placeholder="Leave empty if you want to search all" size="50">
+            <button type="submit">Search</button>
+        </form>
+        <br>
+    {% endif %}
+
+    {% if filter == 'service' %}
+        <form method="post" action="/search">
+            <input type="hidden" name="service" value="provider">
+            <input type="hidden" name="form" value="input">
+            <input type="hidden" name="filter" value="service">
+            <select name="input">
+                <option value="General Practitioner">General Practitioner</option>
+                <option value="Pharmacist">Pharmacist</option>
+                <option value="Physiotherapist">Physiotherapist</option>
+                <option value="Pathologist">Pathologist</option>
+                <option value="Specialist">Specialist</option>
+            </select>
+            <button type="submit">Search</button>
+        </form>
+        <br>
+    {% endif %}
+
+    <br>
+    {% if error %}
+        <p style="color:red">{{error}}</p>
+    {% else %}
+        {% if results is defined %}
+            {% if results|length == 0 %}
+                No results found.
+                <br>
+            {% else %}
+                <table class="table table-striped">
+                    {% if service == 'centre' %}
+                        <tr>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Suburb</th>
+                            <th>Phone</th>
+                            <th>Rating</th>
+                            <th></th>
+                        </tr>
+                        {% for result in results %}
+                            <tr>
+                                <td>{{result.name}}</td>
+                                <td>{{result.category}}</td>
+                                <td>{{result.suburb}}</td>
+                                <td>{{result.phone_number}}</td>
+                                <td>{{result.calculate_average_rating()}}</td>
+                                <td>
+                                    <form method="get" action="/profile/centre/{{result.name}}">
+                                        <button type="submit">View Profile</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% elif service == 'provider' %}
+                        <tr>
+                            <th>Name</th>
+                            <th>Service</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Rating</th>
+                            <th></th>
+                        </tr>
+                        {% for result in results %}
+                            <tr>
+                                <td>{{result.full_name}}</td>
+                                <td>{{result.service}}</td>
+                                <td>{{result.email_address}}</td>
+                                <td>{{result.phone_number}}</td>
+                                <td>{{result.calculate_average_rating()}}</td>
+                                <td>
+                                    <form method="get" action="/profile/provider/{{result.email_address}}">
+                                        <button type="submit">View Profile</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                </table>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+
+{% endblock %}

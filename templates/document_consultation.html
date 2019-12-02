@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Consultation</h2>
+    <br>
+    <table class="table table-bordered">
+        <tr>
+            <td>Patient</td>
+            <td>{{appointment.patient.full_name}}</td>
+        </tr>
+        <tr>
+            <td>Provider</td>
+            <td>{{appointment.provider.full_name}}</td>
+        </tr>
+        <tr>
+            <td>Date</td>
+            <td>{{appointment.datetime.strftime("%A, %d %B %Y")}}</td>
+        </tr>
+        <tr>
+            <td>Time</td>
+            <td>{{appointment.datetime.strftime("%I:%M %p")}}</td>
+        </tr>
+        <tr>
+            <td>Centre</td>
+            <td>{{appointment.healthcare_centre.name}}</td>
+        </tr>
+        <tr>
+            <td>Patient Notes</td>
+            <td>{{appointment.patient_note}}</td>
+        </tr>
+        {% if save or edit %}
+        <tr>
+            <td>Notes</td>
+            <td>{{appointment.provider_comment}}</td>
+        </tr>
+        <tr>
+            <td>Prescribed Medication</td>
+            <td>{{appointment.provider_medication}}</td>
+        </tr>
+        {% if refer %}
+        <tr>
+            <td>Referral</td>
+            <td>Doctor: {{referral.specialist.full_name}}<br>Specialisation: {{referral.specialist.expertise}}<br>Message: {{referral.message}}</td>
+        </tr>
+        {% endif %}
+        {% endif %}
+    </table>
+
+    <br>
+    {% if save %}
+    Saved!
+    {% else %}
+        <form method="post" action="/consultation">
+            {% if edit %}
+                <input type="hidden" name="form" value="save_edit">
+            {% else %}
+                <input type="hidden" name="form" value="save">
+            {% endif %}
+            <input type="hidden" name="provider" value="{{appointment.provider.email_address}}">
+            <input type="hidden" name="datetime" value="{{appointment.datetime.strftime("%d-%m-%Y %H:%M")}}">
+            <b>Notes:</b>
+            <br>
+            <textarea name="comment" rows=4 cols=60 placeholder="Write notes about consultation">{% if edit %}{{appointment.provider_comment}}{% endif %}</textarea>
+            <br>
+            <b>Prescribed medication:</b>
+            <br>
+            <input type="text" name="medication" placeholder="List any medication prescribed during consultation" {% if edit %} value="{{appointment.provider_medication}}" {% endif %} size=60>
+            {% if appointment.provider.is_gp() and not edit %}
+            <br>
+            <b>Specialist referral:</b>
+            <br>
+            <select name="specialist" {% if edit %} disabled {% endif %}>
+                <option value=""></option>
+                {% for specialist in specialists %}
+                    <option value="{{specialist.email_address}}" {% if specialist == appointment.referral.specialist %} selected {% endif %}>{{specialist.expertise}}: {{specialist.full_name}}</option>
+                {% endfor %}
+            </select>
+            <br>
+            <textarea name="referral" rows=3 cols=60 placeholder="Write referral letter" {% if edit %} value="{{appointment.referral.message}}" readonly {% endif %}></textarea>
+            {% endif %}
+            <br><br>
+            <button type="submit">Save</button>
+        </form>
+    {% endif %}
+
+{% endblock %}

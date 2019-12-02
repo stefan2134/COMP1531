@@ -1,0 +1,104 @@
+{%extends 'base.html' %}
+{% block content %}
+
+<div>
+    <h2>Book appointment</h2>
+
+    {% if confirm %}
+    
+    <b>Provider:</b> {{appointmentObj.provider.full_name}}<br>
+    <b>Date:</b> {{appointmentObj.datetime.strftime("%A, %d %b %Y")}}<br>
+    <b>Time:</b> {{appointmentObj.datetime.strftime("%I:%M %p")}}<br>
+    <b>Location:</b> {{appointmentObj.healthcare_centre.name}}<br>
+    {% if appointmentObj.patient_note != None %}<b>Comment:</b> {{appointmentObj.patient_note}}<br>{% endif %}
+    Booking confirmed!
+
+    {% else %}
+        <b>Provider: {{provider.full_name}}</b><br>
+
+        {% if centre is not defined %}
+            Select a centre:<br>
+            <form method="post" action="/booking">
+                <input type="hidden" name="form" value="centre">
+                <input type="hidden" name="referral" value="{{referral}}">
+                <input type="hidden" name="email" value="{{provider.email_address}}">
+                {% for centre in centres %}
+                    <input type="radio" name="centre" value="{{centre.healthcare_centre.name}}" onclick="this.form.submit();"> {{centre.healthcare_centre.name}}<br>
+                {% endfor %}
+            </form>
+        {% else %}
+            <b>Centre: {{centre}}</b><br>
+        {% endif %}
+
+        {% if selected_date %}
+            <b>Date: {{selected_date.strftime("%A, %d %b %Y")}}</b>
+            <br>
+        {% endif %}
+
+        {% if centre is defined %}
+            <form method="post" action="/booking">
+                <label>Select a date:</label><br>
+                <input type="hidden" name="referral" value="{{referral}}">
+                <input type="hidden" name="centre" value="{{centre}}">
+                <input type="hidden" name="email" value="{{provider.email_address}}">
+                <input type="hidden" name="form" value="month">
+                <select name="month" onchange="this.form.submit();">
+                    <option value=""></option>
+                    <option value="1" {% if month=="1" %} selected {% endif %}>January</option>
+                    <option value="2" {% if month=="2" %} selected {% endif %}>February</option>
+                    <option value="3" {% if month=="3" %} selected {% endif %}>March</option>
+                    <option value="4" {% if month=="4" %} selected {% endif %}>April</option>
+                    <option value="5" {% if month=="5" %} selected {% endif %}>May</option>
+                    <option value="6" {% if month=="6" %} selected {% endif %}>June</option>
+                    <option value="7" {% if month=="7" %} selected {% endif %}>July</option>
+                    <option value="8" {% if month=="8" %} selected {% endif %}>August</option>
+                    <option value="9" {% if month=="9" %} selected {% endif %}>September</option>
+                    <option value="10" {% if month=="10" %} selected {% endif %}>October</option>
+                    <option value="11" {% if month=="11" %} selected {% endif %}>November</option>
+                    <option value="12" {% if month=="12" %} selected {% endif %}>December</option>
+                </select>
+            </form>
+        {% endif %}
+
+        {% if month is defined %}
+            <form method="post" action="/booking">
+                <input type="hidden" name="referral" value="{{referral}}">
+                <input type="hidden" name="centre" value="{{centre}}">
+                <input type="hidden" name="email" value="{{provider.email_address}}">
+                <input type="hidden" name="form" value="date">
+                <input type="hidden" name="month" value="{{month}}">
+                <select name="date" onchange="this.form.submit();">
+                    <option value=""></option>
+                    {% for i in dates %}
+                        <option value="{{i}}" {% if i|string==date %} selected {% endif %}>{{i}}</option>
+                    {% endfor %}
+                </select>
+            </form>
+        {% endif %}
+
+        {% if month is defined and date is defined %}
+            <form method="post" action="/confirm">
+                <label>Select any timeslot:</label><br/>
+                <input type="hidden" name="form" value="time">
+                <input type="hidden" name="referral" value="{{referral}}">
+                <input type="hidden" name="month" value="{{month}}">
+                <input type="hidden" name="date" value="{{date}}">
+                <input type="hidden" name="email" value="{{provider.email_address}}">
+                <input type="hidden" name="centre" value="{{centre}}">
+                {% for time in times %}
+                    <input type="radio" name="time" value="{{time}}" {% if time|string==times[0]|string %} checked="checked" {% endif %}> {{time.strftime("%I:%M %p")}}</input>
+                {% endfor %}
+                <p>{{message}}<p>
+                <label>Comment (optional):</label>
+                <br>
+                <input type="text" name="note" size="50">
+                <br><br>
+                <button type="submit">Book</button>
+            </form>
+        {% endif %}
+	    <p>{{errors}}</p>
+    {% endif %}
+
+</div>
+
+{% endblock %}

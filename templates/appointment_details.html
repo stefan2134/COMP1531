@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Appointment details</h2>
+    <br>
+    <table class="table table-bordered">
+        <tr>
+            <td>Patient</td>
+            <td>{{result.patient.full_name}}</td>
+        </tr>
+        <tr>
+            <td>Provider</td>
+            <td>{{result.provider.full_name}}</td>
+        </tr>
+        <tr>
+            <td>Service</td>
+            <td>{{result.provider.service}}</td>
+        </tr>
+
+        <tr>
+            {% if result.provider.is_specialist() %}
+            <td>Specialisation</td>
+            <td>{{result.provider.expertise}}</td>
+            {% endif %}
+        </tr>
+        <tr>
+            <td>Date</td>
+            <td>{{result.datetime.strftime("%A, %d %B %Y")}}</td>
+        </tr>
+        <tr>
+            <td>Time</td>
+            <td>{{result.datetime.strftime("%I:%M %p")}}</td>
+        </tr>
+        <tr>
+            <td>Patient Notes</td>
+            <td>{{result.patient_note}}</td>
+        </tr>
+        <tr>
+            <td>Notes</td>
+            <td>{{result.provider_comment}}</td>
+        </tr>
+        <tr>
+            <td>Prescribed Medication</td>
+            <td>{{result.provider_medication}}</td>
+        </tr>
+
+        {% if result.referral != None %}
+        <tr>
+            <td>Referral</td>
+            <td>Doctor: {{result.referral.specialist.full_name}}<br>Specialisation: {{result.referral.specialist.expertise}}<br>Message: {{result.referral.message}}</td>
+        </tr>
+        {% endif %}
+
+
+    </table>
+
+{% endblock %}

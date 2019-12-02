@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% if service.is_provider() %}
+        <h2>{{service.full_name}}</h2>
+        <table class = "table table-bordered">
+            <tr>
+                <td>Service</td>
+                <td>{{service.service}}</td>
+            </tr>
+            {% if service.is_specialist() %}
+                <tr>
+                    <td>Specialisation</td>
+                    <td>{{service.expertise}}</td>
+                </tr>
+            {% endif %}
+            <tr>
+                <td>Phone number</td>
+                <td>{{service.phone_number}}</td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>{{service.email_address}}</td>
+            </tr>
+            <tr>
+                <td>Rating</td>
+                <td>{{service.calculate_average_rating()}}</td>
+            </tr>
+        </table>
+    {% else %}
+        <h2>{{service.name}}</h2>
+        <table class = "table table-bordered">
+            <tr>
+                <td>Category:</td>
+                <td>{{service.category}}</td>
+            </tr>
+            <tr>
+                <td>Suburb:</td>
+                <td>{{service.suburb}}</td>
+            </tr>
+            <tr>
+                <td>Phone number:</td>
+                <td>{{service.phone_number}}</td>
+            </tr>
+            <tr>
+                <td>Rating:</td>
+                <td>{{service.calculate_average_rating()}}</td>
+            </tr>
+        </table>
+    {% endif %}
+
+    {% if service.is_provider() %}
+        <h2>Healthcare centres at which {{service.full_name}} works:</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Name</th>
+                <th>Working hours</th>
+                <th></th>
+                <th></th>
+            </tr>
+            {% for employment in centre_list %}
+                <tr>
+                    <td>{{employment.healthcare_centre.name}}</td>
+                    <td>{{employment.start_time.isoformat(timespec='minutes')}} - {{employment.end_time.isoformat(timespec='minutes')}}</td>
+                    <td>
+                        <form method="post" action="/profile/centre/{{employment.healthcare_centre.name}}">
+                            <button type="submit">View Profile</button>
+                        </form>
+                    </td>
+                    <td>
+                        {% if not service.is_specialist() and not user.is_provider() and not user.is_specialist()%}
+                            <form method="post" action="/booking">
+                                <input type="hidden" name="form" value="book">
+                                <input type="hidden" name="email" value="{{service.email_address}}">
+                                <input type="hidden" name="centre_name" value="{{employment.healthcare_centre.name}}">
+                                <button type="submit">Book an appointment</button>
+                            </form>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+
+    {% else %}
+
+        <h2>Providers working at {{service.name}}:</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Name</th>
+                <th>Working hours</th>
+                <th>Service</th>
+                <th></th>
+                <th></th>
+            </tr>
+            {% for employment in provider_list %}
+                <tr>
+                    <td>{{employment.provider.full_name}}</td>
+                    <td>{{employment.start_time.isoformat(timespec='minutes')}} - {{employment.end_time.isoformat(timespec='minutes')}}</td>
+                    <td>{{employment.provider.service}}{% if employment.provider.is_specialist() %} ({{employment.provider.expertise}}){% endif %}</td>
+                    <form method="get" action="/profile/provider/{{employment.provider.email_address}}">
+                        <td><button type="submit">View Profile</button></td>
+                    </form>
+                    <td>
+                        {% if not employment.provider.is_specialist() %}
+                            <form method="post" action="/booking">
+                                <input type="hidden" name="form" value="book">
+                                <input type="hidden" name="centre_name" value="{{service.name}}">
+                                <input type="hidden" name="email" value="{{employment.provider.email_address}}">
+                                <button type="submit">Book an appointment</button>
+                            </form>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+
+    {% endif %}
+
+    {% if service.is_provider() %}
+        <form method="post" action="/profile/provider/{{service.email_address}}">
+        <h2>Provide feedback on {{service.full_name}}:</h2>
+    {% else %}
+        <form method="post" action="/profile/centre/{{service.name}}">
+        <h2>Provide your feedback on {{service.name}}:</h2>
+    {% endif %}
+        <select name="rating">
+            <option value="5">5: Excellent</option>
+            <option value="4">4: Great</option>
+            <option value="3">3: Good</option>
+            <option value="2">2: Bad</option>
+            <option value="1">1: Terrible</option>
+        </select>
+        <button type="submit">Submit</button>
+    </form>
+    {% if rating %}
+        <p>Thank you for you rating of {{rating}}/5!</p>
+    {% endif %}
+    </form>
+
+
+{% endblock %}

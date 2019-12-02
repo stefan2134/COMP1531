@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <h2>Current Appointments</h2>
+    <br>
+
+    {% if current_appointments|length == 0 %}
+        No appointments recorded.
+    {% else %}
+        <table class="table table-striped">
+            <tr>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Centre</th>
+                {% if current_user.is_provider() %}
+                    <th>Patient</th>
+                    <th>Patient Notes</th>
+                    <th></th>
+                {% else %}
+                    <th>Provider</th>
+                    <th>Service</th>
+                    <th>Notes</th>
+                {% endif %}
+            </tr>
+            {% for result in current_appointments %}
+                <tr>
+                    <td>{{result.datetime.strftime("%A, %d %B %Y")}}</td>
+                    <td>{{result.datetime.strftime("%I:%M %p")}}</td>
+                    <td>{{result.healthcare_centre.name}}</td>
+                    {% if current_user.is_provider() %}
+                        <td>{{result.patient.full_name}}</td>
+                        <td>{{result.patient_note}}</td>
+                        <form method="post" action="/consultation">
+                            <input type="hidden" name="form" value="start">
+                            <input type="hidden" name="provider" value="{{result.provider.email_address}}">
+                            <input type="hidden" name="datetime" value="{{result.datetime.strftime("%d-%m-%Y %H:%M")}}">
+                            <td><button type="submit">Start consultation</button></td>
+                        </form>
+                    {% else %}
+                        <td>{{result.provider.full_name}}</td>
+                        <td>{{result.provider.service}}</td>
+                        <td>{{result.patient_note}}</td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+
+    <br>
+    <br> </br>
+    <h2>Past Appointments</h2>
+    <br>
+
+    {% if past_appointments|length == 0 %}
+        No appointments recorded.
+    {% else %}
+        <table class="table table-striped">
+            <tr>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Centre</th>
+                {% if current_user.is_provider() %}
+                    <th>Patient</th>
+                    <th>Patient Notes</th>
+                    <th></th>
+                    <th></th>
+                {% else %}
+                    <th>Provider</th>
+                    <th>Service</th>
+                    <th>Notes</th>
+                {% endif %}
+            </tr>
+            {% for result in past_appointments %}
+                <tr>
+                    <td>{{result.datetime.strftime("%A, %d %B %Y")}}</td>
+                    <td>{{result.datetime.strftime("%I:%M %p")}}</td>
+                    <td>{{result.healthcare_centre.name}}</td>
+                    {% if current_user.is_provider() %}
+                    <td>{{result.patient.full_name}}</td>
+                    <td>{{result.patient_note}}</td>
+                        <form method="post" action="/appointment_details">
+                            <input type="hidden" name="provider" value="{{result.provider.email_address}}">
+                            <input type="hidden" name="datetime" value="{{result.datetime.strftime("%d-%m-%Y %H:%M")}}">
+                            <td><button type="submit">View details</button></td>
+                        </form>
+                        {% if current_user.email_address == result.provider.email_address %}
+                            <form method="post" action="/consultation">
+                                <input type="hidden" name="form" value="edit">
+                                <input type="hidden" name="provider" value="{{result.provider.email_address}}">
+                                <input type="hidden" name="datetime" value="{{result.datetime.strftime("%d-%m-%Y %H:%M")}}">
+                                <td><button type="submit">Edit details</button></td>
+                            </form>
+                        {% endif %}
+                    {% else %}
+                        <td>{{result.provider.full_name}}</td>
+                        <td>{{result.provider.service}}</td>
+                        <td>{{result.patient_note}}</td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+
+{% endblock %}

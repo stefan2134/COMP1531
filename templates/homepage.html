@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% if current_user.is_authenticated %}
+        <p>Welcome to our beautiful website, <strong>{{current_user.full_name}}</strong>!</p>
+        You have <strong>{{appointments}}</strong> upcoming appointment{% if appointments != 1 %}s{% endif %}.
+        {% if referrals %}
+            You have <strong>{{referrals}}</strong> referral{% if referrals != 1 %}s{% endif %}.
+        {% endif %}
+    {% else %}
+        <p>You are you not logged in!</p>
+        Please login <a href="{{url_for('login')}}">here</a><br>
+    {% endif %}
+{% endblock %}
